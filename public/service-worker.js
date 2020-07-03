@@ -43,7 +43,22 @@ const FILES_TO_CACHE = [
    if ( event.request.method !== "GET" ) {
     event.respondWith(fetch(event.request));
     return;
-    }
+    };
+    // handle runtime GET requests for data from /api routes
+    if (event.request.url.includes("/api/transaction")) {
+      // make network request and fallback to cache if network request fails (offline)
+      event.respondWith(
+        caches.open(RUNTIME_CACHE).then(cache => {
+          return fetch(event.request)
+            .then(response => {
+              cache.put(event.request, response.clone());
+              return response;
+            })
+            .catch(() => cache.match(event.request))
+        })
+      );
+      return;
+    };
     /* if (event.request.url.startsWith(self.location.origin)) { */
       event.respondWith(
         caches.match(event.request).then(cachedResponse => {
