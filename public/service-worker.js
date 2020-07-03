@@ -39,7 +39,12 @@ const FILES_TO_CACHE = [
   });
   
   self.addEventListener("fetch", event => {
-    /* if (event.request.url.startsWith(self.location.origin)) */ {
+    // non GET requests are not cached and requests to other origins are not cached
+   if ( event.request.method !== "GET" ) {
+    event.respondWith(fetch(event.request));
+    return;
+    }
+    /* if (event.request.url.startsWith(self.location.origin)) { */
       event.respondWith(
         caches.match(event.request).then(cachedResponse => {
           if (cachedResponse) {
@@ -55,5 +60,7 @@ const FILES_TO_CACHE = [
           });
         })
       );
-    }
+      /* } */
   });
+
+   
