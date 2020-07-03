@@ -1,11 +1,15 @@
 const FILES_TO_CACHE = [
-    "/",
-    "/index.html",
-    //"/favorites.html",
-    //"/topic.html",
-    "/assets/css/style.css",
-    "/images/icons/icon-192x192.png",
-    "/images/icons/icon-512x512.png"
+    "./",
+    "./index.html", 
+    "./assets/css/styles.css",
+    "./assets/images/icons/icon-192x192.png",
+    "./assets/images/icons/icon-512x512.png",
+    "./service-worker.js",
+    "./assets/js/db.js",
+    "./assets/js/index.js",
+    "./assets/js/installServiceWorker.js",
+    "./manifest.webmanifest"
+
   ];
   
   

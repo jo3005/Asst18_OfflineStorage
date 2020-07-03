@@ -28,6 +28,13 @@ const config = {
   },
   plugins: [
     new WebpackPwaManifest({
+      name: "Budget app",
+      short_name: "BudgetApp",
+      description: "An application that allows you to save your budget.",
+      background_color: "#01579b",
+      theme_color: "#ffffff",
+      "theme-color": "#ffffff",
+      start_url: "/",
         icons: [{
         src: path.resolve("assets/images/icons/android-chrome-192x192.png"),
         sizes: [96, 128, 192, 256, 384, 512],
